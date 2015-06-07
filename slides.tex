@@ -1,0 +1,160 @@
+%!TEX encoding=UTF-8 Unicode
+\documentclass[xcolor={usenames,dvipsnames}]{beamer}
+
+%=========================Language and encoding ==============================
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+% Fix size errors due to T1 in bbl file
+\usepackage{fix-cm}
+%=============================================================================
+
+%========================= Todo notes  =======================================
+
+\usepackage{todonotes}
+\presetkeys{todonotes}{inline}{}
+
+%=============================================================================
+
+%========================= Figures ===========================================
+
+\usepackage{graphicx} % support the \includegraphics command and options
+\graphicspath{ {./img/} }
+%\usepackage{tikz}
+\usepackage{epstopdf}
+%\usepackage{subcaption}
+
+%=============================================================================
+
+%=============================================================================
+
+%========================= Hyperref ==========================================
+
+\usepackage{hyperref}
+\hypersetup{
+    hyperindex=true, %ajoute des liens dans les index.
+    colorlinks=false, %colorise les liens
+    breaklinks=true, %permet le retour à la ligne dans les liens trop longs
+    urlcolor= blue, %couleur des hyperliens
+    linkcolor= black, %couleur des liens internes
+bookmarksopen=true,}
+
+%=============================================================================
+
+%========================= Other useful includes =============================
+
+\usepackage{ifthen}
+\usepackage[absolute,overlay]{textpos} %to set some blocks position
+%=============================================================================
+
+%========================= Beamer theme =====================================
+
+%Stuff for printable version
+\mode<handout>{
+    \usetheme{default}
+    \setbeamercolor{background canvas}{bg=black!5}
+    \pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=2.5mm]
+}
+
+\usetheme{AntibesCompact}
+%=============================================================================
+
+%========================= Title frame  ======================================
+\title[AntibesCompact]{Antibes Compact: A simple yet pretty beamer theme}
+\author[Dbeniamine]{David Beniamine}
+\institute[No inst]{No institutution for this work}
+%=============================================================================
+
+\begin{document}
+%========================= Title and outlines ================================
+\begin{frame}{}
+    \titlepage
+\end{frame}
+
+\newboolean{sectiontoc}
+\setboolean{sectiontoc}{true} % default to true
+
+\AtBeginSection[]
+{
+    \ifthenelse{\boolean{sectiontoc}}{
+        \begin{frame}<beamer>
+            \frametitle{Outline}
+            \tableofcontents[currentsection,currentsubsection]
+        \end{frame}
+    }
+}
+\AtBeginSubsection[]
+{
+    \ifthenelse{\boolean{sectiontoc}}{
+        \begin{frame}<beamer>
+            \frametitle{Outline}
+            \tableofcontents[currentsection,currentsubsection]
+        \end{frame}
+    }
+}
+
+%=============================================================================
+
+%========================= Real presentation =================================
+
+\begin{frame}{Let's start !}
+    \begin{block}{A minimal design}
+        \begin{itemize}
+            \item Keep the focus on the presentation
+            \item Preserve as much space as possible for your slides
+            \item Yet show all information relative to presentation / speaker
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+\section{A first section}
+\begin{frame}{Tree}
+    Did you see the flat tree that appears in the red bar ?
+\end{frame}
+\subsection{A subsection}
+\begin{frame}{Two level tree}
+    \begin{alertblock}{Flat tree}
+       With the classic tree theme, you would have lost one line in this frame.
+    \end{alertblock}
+\end{frame}
+\subsection{Another subsection}
+\begin{frame}{Dummy slide}
+    \begin{exampleblock}{Because why not ?}
+        And also to show an example block
+    \end{exampleblock}
+\end{frame}
+\section*{A hidden section}
+\begin{frame}{No idea}
+    \begin{block}{So much space}
+        Yet no idea what to do with it, I should stop here \ldots
+    \end{block}
+\end{frame}
+\newcounter{finalframe}
+\setcounter{finalframe}{\value{framenumber}}
+%Last numbered frame go here
+%=============================================================================
+
+%=============================================================================
+%Uncomment next lines for uncounted backup slides & biblio
+%\section*{Bibliography}
+%\setboolean{sectiontoc}{false}
+%
+%\bibliographystyle{apalike}
+%\bibliography{biblio}
+
+%========================= Backup slides =====================================
+%\newsection*{Hidden slides}
+%put this line before each frame
+%\setcounter{framenumber}{\value{finalframe}}
+
+%=============================================================================
+\end{document}
+
+
+
+

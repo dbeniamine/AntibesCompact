@@ -1,0 +1,65 @@
+% -
+ %   Copyright (C) 2015  Beniamine, David <David@Beniamine.net>
+ %   Author: Beniamine, David <David@Beniamine.net>
+ %   
+ %   This program is free software: you can redistribute it and/or modify
+ %   it under the terms of the GNU General Public License as published by
+ %   the Free Software Foundation, either version 3 of the License, or
+ %   (at your option) any later version.
+ %   
+ %   This program is distributed in the hope that it will be useful,
+ %   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ %   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ %   GNU General Public License for more details.
+ %   
+ %   You should have received a copy of the GNU General Public License
+ %   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ %%
+
+\newcommand{\romannum}[1]{\MakeUppercase{\romannumeral#1}}
+\newcommand{\sectnumb}{\romannum{\thesection{}}}
+
+\defbeamertemplate*{headline}{flattree theme}
+ {%
+     %title color box
+     \begin{beamercolorbox}[wd=\paperwidth,colsep=1.5pt]{upper separation line head}
+     \end{beamercolorbox}
+     \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,%
+         leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}
+         \ifnum\c@framenumber>1%
+         \usebeamerfont{title in head/foot}\inserttitle
+         \fi
+     \end{beamercolorbox}
+     %section box
+     \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,%
+         leftskip=.3cm,rightskip=.3cm plus1fil]{section in head/foot}
+         \usebeamerfont{section in head/foot}%
+         \ifx\insertsectionhead\empty\else%
+         %hook
+         {\color{white}\hskip2pt\raise1.9pt\hbox{\vrule width0.4pt%
+         height1.875ex\vrule width 5pt height0.4pt}\hskip1pt}%
+         %section number and section title
+         \sectnumb\ \insertsectionhead%
+         \ifx\insertsubsectionhead\empty\else%
+         %end of the tree
+         \ \raise1.5pt\hbox{\vrule width 5pt height0.4pt}\ %
+         %subsection number and section title
+         \thesubsection{}\ \insertsubsectionhead%
+         \fi%
+         \fi%
+     \end{beamercolorbox}
+ }
+
+\defbeamertemplate*{footline}{flattree theme}
+{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,%
+        leftskip=.3cm,rightskip=.3cm plus1fil]{footline}%
+        \ifnum\c@framenumber>1
+        \ifx\beamer@shortauthor\@empty\insertauthor\else\insertshortauthor\fi\ %
+        \ifx\beamer@shortinstitute\@empty%
+        \ifx\insertinstitute\empty \else(\insertinstitute)\fi%
+        \else(\insertshortinstitute)\fi %
+        \hfill\insertframenumber/\inserttotalframenumber%
+        \fi
+    \end{beamercolorbox}
+}
