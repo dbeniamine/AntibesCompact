@@ -16,9 +16,6 @@
  %   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  %%
 
-\newcommand{\romannum}[1]{\MakeUppercase{\romannumeral#1}}
-\newcommand{\sectnumb}{\romannum{\thesection{}}}
-
 \defbeamertemplate*{headline}{flattree theme}
  {%
      %title color box
@@ -39,12 +36,16 @@
          {\color{white}\hskip2pt\raise1.9pt\hbox{\vrule width0.4pt%
          height1.875ex\vrule width 5pt height0.4pt}\hskip1pt}%
          %section number and section title
-         \sectnumb\ \insertsectionhead%
+         \Roman{section}\ \insertsectionhead%
          \ifx\insertsubsectionhead\empty\else%
          %end of the tree
          \ \raise1.5pt\hbox{\vrule width 5pt height0.4pt}\ %
          %subsection number and section title
-         \thesubsection{}\ \insertsubsectionhead%
+         \thesubsection{}.\ \insertsubsectionhead%
+         \ifx\insertsubsubsectionhead\empty\else%
+         \ \raise1.5pt\hbox{\vrule width 5pt height0.4pt}\ %
+         \alph{subsubsection}.\ \insertsubsubsectionhead
+         \fi%
          \fi%
          \fi%
      \end{beamercolorbox}
